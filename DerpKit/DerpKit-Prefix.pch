@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'DerpKit' target in the 'DerpKit' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+#endif
