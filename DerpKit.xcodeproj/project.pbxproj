@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1E11A54A15B331F100500EBD /* UIViewController+Derp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E11A54915B331F100500EBD /* UIViewController+Derp.m */; };
+		1E11A55A15B333D500500EBD /* NSString+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1F015B2ADA90011D729 /* NSString+Derp.h */; };
+		1E11A55B15B333D600500EBD /* NSData+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1F315B2AE760011D729 /* NSData+Derp.h */; };
+		1E11A55C15B333D800500EBD /* UIViewController+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E11A54815B331F100500EBD /* UIViewController+Derp.h */; };
 		1ED3F1C515B2AD3B0011D729 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1C415B2AD3B0011D729 /* Foundation.framework */; };
 		1ED3F1CA15B2AD3B0011D729 /* DerpKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1C915B2AD3B0011D729 /* DerpKit.h */; };
 		1ED3F1D415B2AD3C0011D729 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1D315B2AD3C0011D729 /* SenTestingKit.framework */; };
@@ -38,6 +41,9 @@
 			dstSubfolderSpec = 16;
 			files = (
 				1ED3F1CA15B2AD3B0011D729 /* DerpKit.h in CopyFiles */,
+				1E11A55A15B333D500500EBD /* NSString+Derp.h in CopyFiles */,
+				1E11A55B15B333D600500EBD /* NSData+Derp.h in CopyFiles */,
+				1E11A55C15B333D800500EBD /* UIViewController+Derp.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
