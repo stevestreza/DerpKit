@@ -15,8 +15,8 @@
 
 -(NSString *)derp_stringByBase64EncodingString;
 -(NSString *)derp_stringByBase64DecodingString;
--(NSData *)derp_dataByBase64DecodingString;
+-(NSData   *)derp_dataByBase64DecodingString;
 
--(NSData *)derp_UTF8Data;
+-(NSData   *)derp_UTF8Data;
 
 @end
