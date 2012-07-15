@@ -8,6 +8,5 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DerpKit : NSObject
-
-@end
+#import "NSString+Derp.h"
+#import "NSData+Derp.h"

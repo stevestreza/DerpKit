@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1ED3F1C515B2AD3B0011D729 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1C415B2AD3B0011D729 /* Foundation.framework */; };
 		1ED3F1CA15B2AD3B0011D729 /* DerpKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1C915B2AD3B0011D729 /* DerpKit.h */; };
-		1ED3F1CC15B2AD3B0011D729 /* DerpKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED3F1CB15B2AD3B0011D729 /* DerpKit.m */; };
 		1ED3F1D415B2AD3C0011D729 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1D315B2AD3C0011D729 /* SenTestingKit.framework */; };
 		1ED3F1D615B2AD3C0011D729 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1D515B2AD3C0011D729 /* UIKit.framework */; };
 		1ED3F1D715B2AD3C0011D729 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1C415B2AD3B0011D729 /* Foundation.framework */; };
@@ -48,7 +47,6 @@
 		1ED3F1C415B2AD3B0011D729 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1ED3F1C815B2AD3B0011D729 /* DerpKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DerpKit-Prefix.pch"; sourceTree = "<group>"; };
 		1ED3F1C915B2AD3B0011D729 /* DerpKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DerpKit.h; sourceTree = "<group>"; };
-		1ED3F1CB15B2AD3B0011D729 /* DerpKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DerpKit.m; sourceTree = "<group>"; };
 		1ED3F1D215B2AD3C0011D729 /* DerpKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DerpKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED3F1D315B2AD3C0011D729 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		1ED3F1D515B2AD3C0011D729 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -119,7 +117,6 @@
 			children = (
 				1ED3F1EC15B2AD470011D729 /* Categories */,
 				1ED3F1C915B2AD3B0011D729 /* DerpKit.h */,
-				1ED3F1CB15B2AD3B0011D729 /* DerpKit.m */,
 				1ED3F1C715B2AD3B0011D729 /* Supporting Files */,
 			);
 			path = DerpKit;
@@ -261,7 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ED3F1CC15B2AD3B0011D729 /* DerpKit.m in Sources */,
 				1ED3F1F215B2ADA90011D729 /* NSString+Derp.m in Sources */,
 				1ED3F1F515B2AE760011D729 /* NSData+Derp.m in Sources */,
 			);

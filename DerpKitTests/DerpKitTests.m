@@ -34,7 +34,6 @@
 - (void)testBase64
 {
 	[self testBase64WithStart:@"Twilight Sparkle is best pony" end:@"VHdpbGlnaHQgU3BhcmtsZSBpcyBiZXN0IHBvbnk="];
-	[self testBase64WithStart:@"A" end:<#(NSString *)#>]
 }
 
 -(void)testUTF8{
@@ -43,6 +42,14 @@
 	NSString *utf8Source = [utf8Data derp_UTF8String];
 
 	STAssertEqualObjects(source, utf8Source, @"UTF8 generates differing data");
+}
+
+-(void)testPercentEscaping{
+	NSString *original = @"https://developer.apple.com/devcenter/ios/index.action";
+	NSString *encoded  = @"https%3A%2F%2Fdeveloper.apple.com%2Fdevcenter%2Fios%2Findex.action";
+	
+	STAssertEqualObjects([original derp_stringByEscapingPercents], encoded,  @"Percent escaping not working");
+	STAssertEqualObjects(original, [encoded derp_stringByUnscapingPercents], @"Percent unescaping not working");
 }
 
 @end

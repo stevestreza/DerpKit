@@ -11,6 +11,25 @@
 
 @implementation NSString (Derp)
 
+-(NSString *)derp_stringByEscapingPercents{
+    NSString *result = (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+																					(CFStringRef)self,
+																					NULL,
+																					CFSTR("!*'();:@&=+$,/?%#[]"),
+																					kCFStringEncodingUTF8);
+	return result;
+}
+
+-(NSString *)derp_stringByUnscapingPercents{
+    NSString *result = (__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault,
+																									(CFStringRef)self,
+																									CFSTR(""),
+																									kCFStringEncodingUTF8);
+	return result;
+}
+
+
+
 -(NSString *)derp_stringByBase64EncodingString{
 	return [[self derp_UTF8Data] derp_stringByBase64EncodingData];
 }

@@ -10,6 +10,9 @@
 
 @interface NSString (Derp)
 
+-(NSString *)derp_stringByEscapingPercents;
+-(NSString *)derp_stringByUnscapingPercents;
+
 -(NSString *)derp_stringByBase64EncodingString;
 -(NSString *)derp_stringByBase64DecodingString;
 -(NSData *)derp_dataByBase64DecodingString;
