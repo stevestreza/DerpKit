@@ -13,4 +13,7 @@
 -(BOOL)derp_isViewVisible;
 -(void)derp_performIfVisible:(dispatch_block_t)handler;
 
+-(void)derp_addKeyboardViewHandlers;
+-(void)derp_removeKeyboardViewHandlers;
+
 @end
