@@ -8,13 +8,13 @@
 
 #import "NSData+Derp.h"
 
-NSUInteger Base64encode_len(NSUInteger len);
-int Base64encode(char * coded_dst, const char *plain_src, NSUInteger len_plain_src);
+NSUInteger DerpKitBase64encode_len(NSUInteger len);
+int DerpKitBase64encode(char * coded_dst, const char *plain_src, NSUInteger len_plain_src);
 
-NSUInteger Base64decode_len(const char * coded_src);
-int Base64decode(char * plain_dst, const char *coded_src);
+NSUInteger DerpKitBase64decode_len(const char * coded_src);
+int DerpKitBase64decode(char * plain_dst, const char *coded_src);
 
-static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+static const char DerpKitBase64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 @implementation NSData (Derp)
 
@@ -36,13 +36,13 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 			buffer[bufferLength++] = ((char *)[self bytes])[i++];
 		
 		//  Encode the bytes in the buffer to four characters, including padding "=" characters if necessary.
-		characters[length++] = encodingTable[(buffer[0] & 0xFC) >> 2];
-		characters[length++] = encodingTable[((buffer[0] & 0x03) << 4) | ((buffer[1] & 0xF0) >> 4)];
+		characters[length++] = DerpKitBase64EncodingTable[(buffer[0] & 0xFC) >> 2];
+		characters[length++] = DerpKitBase64EncodingTable[((buffer[0] & 0x03) << 4) | ((buffer[1] & 0xF0) >> 4)];
 		if (bufferLength > 1)
-			characters[length++] = encodingTable[((buffer[1] & 0x0F) << 2) | ((buffer[2] & 0xC0) >> 6)];
+			characters[length++] = DerpKitBase64EncodingTable[((buffer[1] & 0x0F) << 2) | ((buffer[2] & 0xC0) >> 6)];
 		else characters[length++] = '=';
 		if (bufferLength > 2)
-			characters[length++] = encodingTable[buffer[2] & 0x3F];
+			characters[length++] = DerpKitBase64EncodingTable[buffer[2] & 0x3F];
 		else characters[length++] = '=';
 	}
 	
@@ -52,9 +52,9 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 -(NSString *)derp_stringByBase64DecodingData{
 	const void *inBytes = [self bytes];
 	
-	int outLength = Base64decode_len(inBytes);
+	int outLength = DerpKitBase64decode_len(inBytes);
 	void *outBytes = malloc(outLength);
-	Base64decode(outBytes, inBytes);
+	DerpKitBase64decode(outBytes, inBytes);
 	
 	NSData *outData = [NSData dataWithBytesNoCopy:outBytes length:outLength freeWhenDone:YES];
 	return [[NSString alloc] initWithData:outData encoding:NSASCIIStringEncoding];
@@ -68,7 +68,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
 #include <string.h>
 
-static const unsigned char pr2six[256] =
+static const unsigned char DerpKitBase64_pr2six[256] =
 {
     /* ASCII table */
     64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64,
@@ -89,14 +89,14 @@ static const unsigned char pr2six[256] =
     64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64
 };
 
-NSUInteger Base64decode_len(const char *bufcoded)
+NSUInteger DerpKitBase64decode_len(const char *bufcoded)
 {
     int nbytesdecoded;
     register const unsigned char *bufin;
     register int nprbytes;
 	
     bufin = (const unsigned char *) bufcoded;
-    while (pr2six[*(bufin++)] <= 63);
+    while (DerpKitBase64_pr2six[*(bufin++)] <= 63);
 	
     nprbytes = (bufin - (const unsigned char *) bufcoded) - 1;
     nbytesdecoded = ((nprbytes + 3) / 4) * 3;
@@ -104,7 +104,7 @@ NSUInteger Base64decode_len(const char *bufcoded)
     return nbytesdecoded + 1;
 }
 
-int Base64decode(char *bufplain, const char *bufcoded)
+int DerpKitBase64decode(char *bufplain, const char *bufcoded)
 {
     int nbytesdecoded;
     register const unsigned char *bufin;
@@ -112,7 +112,7 @@ int Base64decode(char *bufplain, const char *bufcoded)
     register int nprbytes;
 	
     bufin = (const unsigned char *) bufcoded;
-    while (pr2six[*(bufin++)] <= 63);
+    while (DerpKitBase64_pr2six[*(bufin++)] <= 63);
     nprbytes = (bufin - (const unsigned char *) bufcoded) - 1;
     nbytesdecoded = ((nprbytes + 3) / 4) * 3;
 	
@@ -121,11 +121,11 @@ int Base64decode(char *bufplain, const char *bufcoded)
 	
     while (nprbytes > 4) {
 		*(bufout++) =
-        (unsigned char) (pr2six[*bufin] << 2 | pr2six[bufin[1]] >> 4);
+        (unsigned char) (DerpKitBase64_pr2six[*bufin] << 2 | DerpKitBase64_pr2six[bufin[1]] >> 4);
 		*(bufout++) =
-        (unsigned char) (pr2six[bufin[1]] << 4 | pr2six[bufin[2]] >> 2);
+        (unsigned char) (DerpKitBase64_pr2six[bufin[1]] << 4 | DerpKitBase64_pr2six[bufin[2]] >> 2);
 		*(bufout++) =
-        (unsigned char) (pr2six[bufin[2]] << 6 | pr2six[bufin[3]]);
+        (unsigned char) (DerpKitBase64_pr2six[bufin[2]] << 6 | DerpKitBase64_pr2six[bufin[3]]);
 		bufin += 4;
 		nprbytes -= 4;
     }
@@ -133,15 +133,15 @@ int Base64decode(char *bufplain, const char *bufcoded)
     /* Note: (nprbytes == 1) would be an error, so just ingore that case */
     if (nprbytes > 1) {
 		*(bufout++) =
-        (unsigned char) (pr2six[*bufin] << 2 | pr2six[bufin[1]] >> 4);
+        (unsigned char) (DerpKitBase64_pr2six[*bufin] << 2 | DerpKitBase64_pr2six[bufin[1]] >> 4);
     }
     if (nprbytes > 2) {
 		*(bufout++) =
-        (unsigned char) (pr2six[bufin[1]] << 4 | pr2six[bufin[2]] >> 2);
+        (unsigned char) (DerpKitBase64_pr2six[bufin[1]] << 4 | DerpKitBase64_pr2six[bufin[2]] >> 2);
     }
     if (nprbytes > 3) {
 		*(bufout++) =
-        (unsigned char) (pr2six[bufin[2]] << 6 | pr2six[bufin[3]]);
+        (unsigned char) (DerpKitBase64_pr2six[bufin[2]] << 6 | DerpKitBase64_pr2six[bufin[3]]);
     }
 	
     *(bufout++) = '\0';
@@ -149,38 +149,38 @@ int Base64decode(char *bufplain, const char *bufcoded)
     return nbytesdecoded;
 }
 
-static const char basis_64[] =
+static const char DerpKitBase64_basis64[] =
 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-NSUInteger Base64encode_len(NSUInteger len)
+NSUInteger DerpKitBase64encode_len(NSUInteger len)
 {
     return ((len + 2) / 3 * 4) + 1;
 }
 
-int Base64encode(char *encoded, const char *string, NSUInteger len)
+int DerpKitBase64encode(char *encoded, const char *string, NSUInteger len)
 {
     int i;
     char *p;
 	
     p = encoded;
     for (i = 0; i < len - 2; i += 3) {
-		*p++ = basis_64[(string[i] >> 2) & 0x3F];
-		*p++ = basis_64[((string[i] & 0x3) << 4) |
-						((int) (string[i + 1] & 0xF0) >> 4)];
-		*p++ = basis_64[((string[i + 1] & 0xF) << 2) |
-						((int) (string[i + 2] & 0xC0) >> 6)];
-		*p++ = basis_64[string[i + 2] & 0x3F];
+		*p++ = DerpKitBase64_basis64[(string[i] >> 2) & 0x3F];
+		*p++ = DerpKitBase64_basis64[((string[i] & 0x3) << 4) |
+									 ((int) (string[i + 1] & 0xF0) >> 4)];
+		*p++ = DerpKitBase64_basis64[((string[i + 1] & 0xF) << 2) |
+									 ((int) (string[i + 2] & 0xC0) >> 6)];
+		*p++ = DerpKitBase64_basis64[string[i + 2] & 0x3F];
     }
     if (i < len) {
-		*p++ = basis_64[(string[i] >> 2) & 0x3F];
+		*p++ = DerpKitBase64_basis64[(string[i] >> 2) & 0x3F];
 		if (i == (len - 1)) {
-			*p++ = basis_64[((string[i] & 0x3) << 4)];
+			*p++ = DerpKitBase64_basis64[((string[i] & 0x3) << 4)];
 			*p++ = '=';
 		}
 		else {
-			*p++ = basis_64[((string[i] & 0x3) << 4) |
-							((int) (string[i + 1] & 0xF0) >> 4)];
-			*p++ = basis_64[((string[i + 1] & 0xF) << 2)];
+			*p++ = DerpKitBase64_basis64[((string[i] & 0x3) << 4) |
+										 ((int) (string[i + 1] & 0xF0) >> 4)];
+			*p++ = DerpKitBase64_basis64[((string[i + 1] & 0xF) << 2)];
 		}
 		*p++ = '=';
     }
