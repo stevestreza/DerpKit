@@ -25,7 +25,6 @@
 	NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
 	id willShow = [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification object:nil queue:mainQueue usingBlock:^(NSNotification *note) {
 		[self derp_performIfVisible:^{
-			NSLog(@"notif: %@",[note userInfo]);
 			CGRect keyboardFrame = [self.view convertRect:[(NSValue *)note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue]
 												 fromView:nil];
 			CGRect viewFrame = self.view.frame;
@@ -44,7 +43,6 @@
 	
 	id willHide = [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification object:nil queue:mainQueue usingBlock:^(NSNotification *note) {
 		[self derp_performIfVisible:^{
-			NSLog(@"notif: %@",[note userInfo]);
 			CGRect keyboardFrame = [(NSValue *)note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
 			CGRect viewFrame = self.view.frame;
 			viewFrame.size.height += keyboardFrame.size.height;
