@@ -10,3 +10,4 @@
 
 #import "NSString+Derp.h"
 #import "NSData+Derp.h"
+#import "NSObject+Derp.h"
