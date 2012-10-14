@@ -8,6 +8,7 @@
 
 #import "NSString+Derp.h"
 #import "NSData+Derp.h"
+#import <CommonCrypto/CommonHMAC.h>
 
 @implementation NSString (Derp)
 
@@ -28,7 +29,32 @@
 	return result;
 }
 
+-(NSString *)derp_HMAC_SHA1SignatureWithKey:(NSString *)signingKey{
+	const char *keyBytes = [signingKey cStringUsingEncoding:NSUTF8StringEncoding];
+    const char *baseStringBytes = [self cStringUsingEncoding:NSUTF8StringEncoding];
+    unsigned char digestBytes[CC_SHA1_DIGEST_LENGTH];
+    
+	CCHmacContext ctx;
+    CCHmacInit(&ctx, kCCHmacAlgSHA1, keyBytes, strlen(keyBytes));
+	CCHmacUpdate(&ctx, baseStringBytes, strlen(baseStringBytes));
+	CCHmacFinal(&ctx, digestBytes);
+    
+	NSData *digestData = [NSData dataWithBytes:digestBytes length:CC_SHA1_DIGEST_LENGTH];
+	NSString *signatureString = [digestData derp_stringByBase64EncodingData];
+	return signatureString;
+}
 
++(NSString *)derp_randomStringWithLength:(NSUInteger)length{
+	static NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	
+	NSMutableString *randomString = [NSMutableString stringWithCapacity: length];
+	
+	for (int i=0; i<length; i++) {
+		[randomString appendFormat: @"%C", [letters characterAtIndex: arc4random() % [letters length]]];
+	}
+	
+	return [randomString copy];
+}
 
 -(NSString *)derp_stringByBase64EncodingString{
 	return [[self derp_UTF8Data] derp_stringByBase64EncodingData];
