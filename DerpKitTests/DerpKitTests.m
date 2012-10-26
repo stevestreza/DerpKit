@@ -7,8 +7,7 @@
 //
 
 #import "DerpKitTests.h"
-#import "NSString+Derp.h"
-#import "NSData+Derp.h"
+#import "Foundation.h"
 
 @implementation DerpKitTests
 
@@ -50,6 +49,32 @@
 	
 	STAssertEqualObjects([original derp_stringByEscapingPercents], encoded,  @"Percent escaping not working");
 	STAssertEqualObjects(original, [encoded derp_stringByUnscapingPercents], @"Percent unescaping not working");
+}
+
+-(void)testMapping{
+	NSArray *values = [@[ @1, @3, @42, @373 ] derp_arrayByMappingWithHandler:^id(id object, NSUInteger index, BOOL *stop) {
+		int number = [object intValue];
+		return @(number * 3);
+	}];
+	
+	STAssertTrue(values.count == 4, @"Mapping does not have correct number of values: %i", values.count);
+	
+	STAssertEqualObjects(values[0], @3,    @"Mapping[0] did not produce valid result - %@ != %@", values[0], @3);
+	STAssertEqualObjects(values[1], @9,    @"Mapping[1] did not produce valid result - %@ != %@", values[1], @9);
+	STAssertEqualObjects(values[2], @126,  @"Mapping[2] did not produce valid result - %@ != %@", values[2], @126);
+	STAssertEqualObjects(values[3], @1119, @"Mapping[3] did not produce valid result - %@ != %@", values[3], @1119);
+}
+
+-(void)testFiltering{
+	NSArray *values = [@[@1, @2, @3, @4, @5, @6] derp_subarrayByFilteringWithHandler:^BOOL(id object, NSUInteger index, BOOL *stop) {
+		return ([object intValue] % 2 == 0);
+	}];
+	
+	STAssertTrue(values.count == 3, @"Filtering does not have correct number of values");
+	
+	STAssertEqualObjects(values[0], @2,    @"Filtering[0] did not produce valid result - %@ != %@", values[0], @2);
+	STAssertEqualObjects(values[1], @4,    @"Filtering[1] did not produce valid result - %@ != %@", values[1], @4);
+	STAssertEqualObjects(values[2], @6,    @"Filtering[2] did not produce valid result - %@ != %@", values[2], @6);
 }
 
 @end
