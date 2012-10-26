@@ -5,7 +5,7 @@ Features
 
 **Foundation:**
 
-- Block-based KVO based on Andy Matuschak's [KVO+Blocks](https://gist.github.com/153676) Gist
+- Block-based KVO
 - Percent-encoding on strings
 - Base64-encoding on strings and data
 - Generating random strings
@@ -28,6 +28,13 @@ The three ways to include DerpKit are:
 - Pull individual files into your project
 
 DerpKit is based on ARC.
+
+Attribution
+===========
+
+DerpKit uses code from the following projects:
+
+- [KVO+Blocks](https://gist.github.com/153676) by Andy Matuschak
 
 License
 =======
