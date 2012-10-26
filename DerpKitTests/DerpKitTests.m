@@ -69,7 +69,7 @@
 	STAssertEqualObjects(original, [encoded derp_stringByUnscapingPercents], @"Percent unescaping not working");
 }
 
--(void)testMapping{
+-(void)testArrayMapping{
 	NSArray *values = [@[ @1, @3, @42, @373 ] derp_arrayByMappingWithHandler:^id(id object, NSUInteger index, BOOL *stop) {
 		int number = [object intValue];
 		return @(number * 3);
@@ -83,7 +83,7 @@
 	STAssertEqualObjects(values[3], @1119, @"Mapping[3] did not produce valid result - %@ != %@", values[3], @1119);
 }
 
--(void)testFiltering{
+-(void)testArrayFiltering{
 	NSArray *values = [@[@1, @2, @3, @4, @5, @6] derp_subarrayByFilteringWithHandler:^BOOL(id object, NSUInteger index, BOOL *stop) {
 		return ([object intValue] % 2 == 0);
 	}];
@@ -93,6 +93,30 @@
 	STAssertEqualObjects(values[0], @2,    @"Filtering[0] did not produce valid result - %@ != %@", values[0], @2);
 	STAssertEqualObjects(values[1], @4,    @"Filtering[1] did not produce valid result - %@ != %@", values[1], @4);
 	STAssertEqualObjects(values[2], @6,    @"Filtering[2] did not produce valid result - %@ != %@", values[2], @6);
+}
+
+-(void)testDictionaryMapping{
+	NSDictionary *values = [@{ @"foo": @1, @"bar": @14, @"baz": @42}  derp_dictionaryByMappingWithHandler:^id(id object, id key, BOOL *stop) {
+		return [NSNumber numberWithInt:([object intValue] * 3)];
+	}];
+	
+	STAssertTrue(values.count == 3, @"Mapping does not have correct number of values: %i", values.count);
+	
+	STAssertEqualObjects(values[@"foo"], @3,    @"Mapping[foo] did not produce valid result - %@ != %@", values[@"foo"], @3);
+	STAssertEqualObjects(values[@"bar"], @42,    @"Mapping[bar] did not produce valid result - %@ != %@", values[@"bar"], @42);
+	STAssertEqualObjects(values[@"baz"], @126,  @"Mapping[baz] did not produce valid result - %@ != %@", values[@"baz"], @126);
+}
+
+-(void)testDictionaryFiltering{
+	NSDictionary *values = [@{ @"foo": @1, @"bar": @14, @"baz": @42}  derp_subdictionaryByFilteringWithHandler:^BOOL(id object, id key, BOOL *stop) {
+		return ([object intValue] % 2 == 0);
+	}];
+	
+	STAssertTrue(values.count == 2, @"Filtering does not have correct number of values");
+	
+	STAssertNil(values[@"foo"], @"Filtering[foo] is not nil");
+	STAssertEqualObjects(values[@"bar"], @14,    @"Filtering[bar] did not produce valid result - %@ != %@", values[@"bar"], @14);
+	STAssertEqualObjects(values[@"baz"], @42,    @"Filtering[baz] did not produce valid result - %@ != %@", values[@"baz"], @42);
 }
 
 @end

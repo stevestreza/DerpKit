@@ -47,14 +47,14 @@
 }
 
 -(NSArray *)derp_subarrayByFilteringWithHandler:(BOOL (^)(id object, NSUInteger index, BOOL *stop))handler{
-	NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
+	NSMutableArray *array = [self mutableCopy];
 	
 	BOOL stop = NO;
 	for(NSUInteger index = 0; index < self.count; index++){
 		id object = self[index];
 		BOOL success = handler(object, index, &stop);
-		if(success){
-			[array addObject:object];
+		if(!success){
+			[array removeObject:object];
 		}
 		if(stop){
 			break;

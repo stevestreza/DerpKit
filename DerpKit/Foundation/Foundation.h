@@ -27,3 +27,4 @@
 #import "NSString+Derp.h"
 #import "NSData+Derp.h"
 #import "NSArray+Derp.h"
+#import "NSDictionary+Derp.h"
