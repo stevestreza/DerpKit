@@ -97,12 +97,12 @@ static dispatch_queue_t DerpKitMutationQueueCreatingIfNecessary()
 
 @implementation NSObject (DerpKitKVOObservation)
 
-- (DerpKitKVOToken *)addObserverForKeyPath:(NSString *)keyPath task:(DerpKitKVOTask)task
+- (DerpKitKVOToken *)derp_addObserverForKeyPath:(NSString *)keyPath task:(DerpKitKVOTask)task
 {
-    return [self addObserverForKeyPath:keyPath onQueue:nil task:task];
+    return [self derp_addObserverForKeyPath:keyPath onQueue:nil task:task];
 }
 
-- (DerpKitKVOToken *)addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(DerpKitKVOTask)task
+- (DerpKitKVOToken *)derp_addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(DerpKitKVOTask)task
 {
     DerpKitKVOToken *token = [[NSProcessInfo processInfo] globallyUniqueString];
     dispatch_sync(DerpKitMutationQueueCreatingIfNecessary(), ^{
@@ -118,7 +118,7 @@ static dispatch_queue_t DerpKitMutationQueueCreatingIfNecessary()
     return token;
 }
 
-- (void)removeObserverWithBlockToken:(DerpKitKVOToken *)token
+- (void)derp_removeObserverWithBlockToken:(DerpKitKVOToken *)token
 {
     dispatch_sync(DerpKitMutationQueueCreatingIfNecessary(), ^{
         NSMutableDictionary *observationDictionary = objc_getAssociatedObject(self, (__bridge const void *)(DerpKitMapKey));

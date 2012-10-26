@@ -30,8 +30,8 @@ typedef NSString DerpKitKVOToken;
 typedef void (^DerpKitKVOTask)(id obj, NSDictionary *change);
 
 @interface NSObject (DerpKitKVOObservation)
-- (DerpKitKVOToken *)addObserverForKeyPath:(NSString *)keyPath task:(DerpKitKVOTask)task;
-- (DerpKitKVOToken *)addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(DerpKitKVOTask)task;
-- (void)removeObserverWithBlockToken:(DerpKitKVOToken *)token;
+- (DerpKitKVOToken *)derp_addObserverForKeyPath:(NSString *)keyPath task:(DerpKitKVOTask)task;
+- (DerpKitKVOToken *)derp_addObserverForKeyPath:(NSString *)keyPath onQueue:(NSOperationQueue *)queue task:(DerpKitKVOTask)task;
+- (void)derp_removeObserverWithBlockToken:(DerpKitKVOToken *)token;
 @end
 
