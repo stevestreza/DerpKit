@@ -8,5 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSString+Derp.h"
-#import "NSData+Derp.h"
+#import "Foundation.h"

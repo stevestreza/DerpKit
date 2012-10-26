@@ -11,6 +11,7 @@
 		1E11A55A15B333D500500EBD /* NSString+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1F015B2ADA90011D729 /* NSString+Derp.h */; };
 		1E11A55B15B333D600500EBD /* NSData+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1F315B2AE760011D729 /* NSData+Derp.h */; };
 		1E11A55C15B333D800500EBD /* UIViewController+Derp.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E11A54815B331F100500EBD /* UIViewController+Derp.h */; };
+		1EC132C4163A693200CCF530 /* NSArray+Derp.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC132C3163A693200CCF530 /* NSArray+Derp.m */; };
 		1ED3F1C515B2AD3B0011D729 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1C415B2AD3B0011D729 /* Foundation.framework */; };
 		1ED3F1CA15B2AD3B0011D729 /* DerpKit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1ED3F1C915B2AD3B0011D729 /* DerpKit.h */; };
 		1ED3F1D415B2AD3C0011D729 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED3F1D315B2AD3C0011D729 /* SenTestingKit.framework */; };
@@ -52,6 +53,9 @@
 /* Begin PBXFileReference section */
 		1E11A54815B331F100500EBD /* UIViewController+Derp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Derp.h"; sourceTree = "<group>"; };
 		1E11A54915B331F100500EBD /* UIViewController+Derp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Derp.m"; sourceTree = "<group>"; };
+		1EC132C2163A693200CCF530 /* NSArray+Derp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Derp.h"; sourceTree = "<group>"; };
+		1EC132C3163A693200CCF530 /* NSArray+Derp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Derp.m"; sourceTree = "<group>"; };
+		1EC1AB14163A6BE3008A6B50 /* Foundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Foundation.h; path = DerpKit/Foundation/Foundation.h; sourceTree = SOURCE_ROOT; };
 		1ED3F1C115B2AD3B0011D729 /* libDerpKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDerpKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED3F1C415B2AD3B0011D729 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1ED3F1C815B2AD3B0011D729 /* DerpKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DerpKit-Prefix.pch"; sourceTree = "<group>"; };
@@ -191,6 +195,9 @@
 				1ED3F1F115B2ADA90011D729 /* NSString+Derp.m */,
 				1ED3F1F315B2AE760011D729 /* NSData+Derp.h */,
 				1ED3F1F415B2AE760011D729 /* NSData+Derp.m */,
+				1EC132C2163A693200CCF530 /* NSArray+Derp.h */,
+				1EC132C3163A693200CCF530 /* NSArray+Derp.m */,
+				1EC1AB14163A6BE3008A6B50 /* Foundation.h */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -296,6 +303,7 @@
 				1ED3F1F215B2ADA90011D729 /* NSString+Derp.m in Sources */,
 				1ED3F1F515B2AE760011D729 /* NSData+Derp.m in Sources */,
 				1E11A54A15B331F100500EBD /* UIViewController+Derp.m in Sources */,
+				1EC132C4163A693200CCF530 /* NSArray+Derp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
