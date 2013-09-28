@@ -51,6 +51,8 @@
 - (void)testBase64
 {
 	[self testBase64WithStart:@"Twilight Sparkle is best pony" end:@"VHdpbGlnaHQgU3BhcmtsZSBpcyBiZXN0IHBvbnk="];
+	[self testBase64WithStart:@"Now, careful, Derpy. You don't wanna do any more damage than you've already done." end:@"Tm93LCBjYXJlZnVsLCBEZXJweS4gWW91IGRvbid0IHdhbm5hIGRvIGFueSBtb3JlIGRhbWFnZSB0aGFuIHlvdSd2ZSBhbHJlYWR5IGRvbmUu"];
+	[self testBase64WithStart:@"I just don't know what went wrong!" end:@"SSBqdXN0IGRvbid0IGtub3cgd2hhdCB3ZW50IHdyb25nIQ=="];
 }
 
 -(void)testUTF8{

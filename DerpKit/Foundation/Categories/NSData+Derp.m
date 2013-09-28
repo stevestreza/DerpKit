@@ -40,6 +40,12 @@ static const char DerpKitBase64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcd
 	if ([self length] == 0)
 		return @"";
 	
+	if ([self respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
+		return [self base64EncodedStringWithOptions:0];
+	} else if ([self respondsToSelector:@selector(base64Encoding)]) {
+		return [self base64Encoding];
+	}
+
     char *characters = malloc((([self length] + 2) / 3) * 4);
 	if (characters == NULL)
 		return nil;
@@ -68,13 +74,20 @@ static const char DerpKitBase64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcd
 }
 
 -(NSString *)derp_stringByBase64DecodingData{
-	const void *inBytes = [self bytes];
-	
-	int outLength = DerpKitBase64decode_len(inBytes);
-	void *outBytes = malloc(outLength);
-	DerpKitBase64decode(outBytes, inBytes);
-	
-	NSData *outData = [NSData dataWithBytesNoCopy:outBytes length:outLength freeWhenDone:YES];
+	NSData *outData = nil;
+	if ([self respondsToSelector:@selector(initWithBase64EncodedData:options:)]) {
+		outData = [[NSData alloc] initWithBase64EncodedData:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+	} else if ([self respondsToSelector:@selector(initWithBase64Encoding:)]) {
+		outData = [[NSData alloc] initWithBase64Encoding:[[NSString alloc] initWithData:self encoding:NSASCIIStringEncoding]];
+	} else {
+		const void *inBytes = [self bytes];
+		
+		int outLength = DerpKitBase64decode_len(inBytes);
+		void *outBytes = malloc(outLength);
+		DerpKitBase64decode(outBytes, inBytes);
+		
+		outData = [NSData dataWithBytesNoCopy:outBytes length:outLength freeWhenDone:YES];
+	}
 	return [[NSString alloc] initWithData:outData encoding:NSASCIIStringEncoding];
 }
 

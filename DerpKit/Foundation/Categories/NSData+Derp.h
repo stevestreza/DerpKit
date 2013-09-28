@@ -28,8 +28,11 @@
 
 @interface NSData (Derp)
 
--(NSString *)derp_stringByBase64EncodingData;
--(NSString *)derp_stringByBase64DecodingData;
+// Base 64 decoding is now handled natively on Mac and iOS. You are recommended to
+// use the native methods, which have been made retroactively public API in NSData.h.
+// Where possible, these methods now use the native APIs.
+-(NSString *)derp_stringByBase64EncodingData NS_DEPRECATED(10_6, 10_9, 4_0, 7_0);
+-(NSString *)derp_stringByBase64DecodingData NS_DEPRECATED(10_6, 10_9, 4_0, 7_0);
 
 -(NSString *)derp_UTF8String;
 
