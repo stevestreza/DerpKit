@@ -59,4 +59,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
-<a href="http://ikillyou121.deviantart.com/art/Smiley-Derpy-Hooves-Vector-377582698">![Derpy is best pony. Image licensed under Creative Commons from ikillyou121 on DeviantArt.](https://raw.github.com/stevestreza/stevestreza/native-base64/mascot.png)</a>
+<a href="http://ikillyou121.deviantart.com/art/Smiley-Derpy-Hooves-Vector-377582698">![Derpy is best pony. Image licensed under Creative Commons from ikillyou121 on DeviantArt.](https://raw.github.com/stevestreza/DerpKit/native-base64/mascot.png)</a>
