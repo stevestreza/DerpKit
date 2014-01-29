@@ -58,7 +58,7 @@
 	CCHmacFinal(&ctx, digestBytes);
     
 	NSData *digestData = [NSData dataWithBytes:digestBytes length:CC_SHA1_DIGEST_LENGTH];
-	NSString *signatureString = [digestData derp_stringByBase64EncodingData];
+	NSString *signatureString = [digestData base64EncodedStringWithOptions:0];
 	return signatureString;
 }
 
@@ -75,7 +75,7 @@
 }
 
 -(NSString *)derp_stringByBase64EncodingString{
-	return [[self derp_UTF8Data] derp_stringByBase64EncodingData];
+	return [[self derp_UTF8Data] base64EncodedStringWithOptions:0];
 }
 
 -(NSString *)derp_stringByBase64DecodingString{
